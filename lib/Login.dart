@@ -29,13 +29,28 @@ class _LoginPageState extends State<LoginPage> {
       home: Scaffold(
         body: SafeArea(
             child: Stack(
-              children: [Center(
+              children: [
+                Container(
+                    height:double.infinity,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          colors: [Color.fromARGB(255,207, 236, 243),Colors.white],
+                          begin: AlignmentGeometry.bottomEnd,
+                          end: AlignmentGeometry.topStart,
+
+
+                        )
+                    )
+
+
+                ),
+
+                Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Container(
 
-                    ),
 
 
                     Container(
@@ -72,18 +87,16 @@ class _LoginPageState extends State<LoginPage> {
 
 
 
+
                             controller: TextEditingController(),
                             autocorrect: true,
 
                             decoration: InputDecoration(
+                              hintText: "Enter The Email ID",
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(20),
                               ),
-                              hintText: "Enter your email",
-                              hintStyle: GoogleFonts.aBeeZee(
-                                color: Colors.white,
-                                fontSize: 18,
-                              )
+
 
 
                             ),
