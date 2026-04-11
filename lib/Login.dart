@@ -50,6 +50,11 @@ class _LoginPageState extends State<LoginPage> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+                    Row(
+                      children: [
+                        IconButton.outlined(onPressed: (){Navigator.pop(context);}, icon: Icon(Icons.arrow_back)),
+                      ],
+                    ),
 
 
 

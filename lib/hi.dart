@@ -1,7 +1,8 @@
-import "package:flutter/cupertino.dart";
+import 'package:flutter/material.dart';
+import 'package:panorama_image/panorama_image.dart';
 
-void main(){
-  runApp(MyApps());
+void main() {
+  runApp(const MyApps());
 }
 
 class MyApps extends StatelessWidget {
@@ -9,17 +10,8 @@ class MyApps extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool _var=true;
-    return CupertinoApp(
-      debugShowCheckedModeBanner: false,
-      home: CupertinoPageScaffold(
-        child: CupertinoCheckbox(value: _var, onChanged:(val){
-          _var=val!;
-        }),
-
-
-
-      )
+    return MaterialApp(
+      title: 'Panorama Example',
     );
   }
 }
