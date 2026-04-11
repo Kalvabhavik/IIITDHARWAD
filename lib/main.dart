@@ -165,6 +165,7 @@ class _MyappState extends State<Myapp> with SingleTickerProviderStateMixin {
                                 borderRadius: BorderRadius.circular(30),
                                 image: DecorationImage(
                                   image: AssetImage("assets/iiit3.png"),
+                                  fit: BoxFit.cover,
                                 ),
                               ),
                             ),
