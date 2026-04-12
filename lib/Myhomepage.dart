@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hydro_glass_nav_bar/hydro_glass_nav_bar.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:just_audio/just_audio.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -12,11 +13,14 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage>
     with SingleTickerProviderStateMixin {
   late TabController _tabcontorller;
+  final player =AudioPlayer();
 
   @override
   void initState() {
     super.initState();
     _tabcontorller = TabController(length: 4, vsync: this);
+    player.setAsset("assets/song.mp3");
+    player.play();
   }
 
   @override
@@ -54,31 +58,40 @@ class _MyHomePageState extends State<MyHomePage>
                             expandedHeight: 50,
                             backgroundColor: Colors.white,
                             shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadiusGeometry.circular(40)
+                              borderRadius: BorderRadiusGeometry.circular(40),
                             ),
                             flexibleSpace: Row(
-
                               children: [
-                                SizedBox(width: 50,),
-                                Image.network("https://aiwc.org.au/wp-content/uploads/2022/06/IIIT-Dharwad-logo.webp"),
-                                Text("        Home"
-                                ,style: GoogleFonts.aBeeZee(
-                                    textStyle: TextStyle(
-                                      fontSize: 30,
-                                    )
-                                  ),),
+                                SizedBox(width: 50),
+                                Image.network(
+                                  "https://aiwc.org.au/wp-content/uploads/2022/06/IIIT-Dharwad-logo.webp",
+                                ),
+                                Text(
+                                  "        Home",
+                                  style: GoogleFonts.aBeeZee(
+                                    textStyle: TextStyle(fontSize: 30),
+                                  ),
+                                ),
                               ],
                             ),
                             actions: [
-                              IconButton(onPressed: (){
-                                _tabcontorller.animateTo(3);
-                              }, icon: Icon(Icons.settings))
+                              IconButton(
+                                onLongPress: (){
+
+                                  player.pause();
+
+                                },
+                                onPressed: () {
+                                  _tabcontorller.animateTo(3);
+                                },
+                                icon: Icon(Icons.settings),
+                              ),
+
+
                             ],
-
-
-                          )
-                          ]
-                      )
+                          ),
+                        ],
+                      ),
                     ],
                   ),
                 ),

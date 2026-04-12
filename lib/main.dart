@@ -6,6 +6,7 @@ import "Myhomepage.dart";
 import "Login.dart";
 import "dart:ui";
 import 'package:glassmorphism/glassmorphism.dart';
+import 'package:just_audio/just_audio.dart';
 
 //
 void main() {
@@ -20,6 +21,9 @@ class Myapp extends StatefulWidget {
 }
 
 class _MyappState extends State<Myapp> with SingleTickerProviderStateMixin {
+  final player=AudioPlayer();
+
+
   Future<void> _launchfacebook() async {
     final Uri url = Uri.parse(
       'https://www.facebook.com/people/IIIT-Dharwad/100064315712672/',
@@ -27,6 +31,15 @@ class _MyappState extends State<Myapp> with SingleTickerProviderStateMixin {
 
     // learned from gemini
     await launchUrl(url, mode: LaunchMode.externalApplication);
+  }
+
+  @override
+  void initState() {
+
+    super.initState();
+    player.setAsset("assets/iiit.mp3");
+    player.play();
+
   }
 
   Future<void> _launchlinkedin() async {
@@ -46,17 +59,12 @@ class _MyappState extends State<Myapp> with SingleTickerProviderStateMixin {
   }
 
   Future<void> _launchfeed() async {
-    final Uri url =  Uri.parse(
+    final Uri url = Uri.parse(
       "https://docs.google.com/forms/d/e/1FAIpQLSdW7sGSH5s5l9H8_2mn2I8VSvotO6J95c0_rZiKRm9QxLLrSw/viewform?usp=publish-editor",
-
     );
 
     // learned from gemini
-    await launchUrl(
-     url,
-      mode: LaunchMode.inAppWebView,
-
-    );
+    await launchUrl(url, mode: LaunchMode.inAppWebView);
   }
 
   @override
@@ -89,8 +97,8 @@ class _MyappState extends State<Myapp> with SingleTickerProviderStateMixin {
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(30),
                             image: DecorationImage(
-                              image: NetworkImage(
-                                "https://aiwc.org.au/wp-content/uploads/2022/06/IIIT-Dharwad-logo.webp",
+                              image: AssetImage(
+                                "assets/iiit.png",
                               ),
                               fit: BoxFit.cover,
                             ),
@@ -103,9 +111,9 @@ class _MyappState extends State<Myapp> with SingleTickerProviderStateMixin {
                         color: Colors.transparent,
                         child: CupertinoButton(
                           onPressed: _launchiiit,
-                  
+
                           pressedOpacity: 0.1,
-                  
+
                           sizeStyle: CupertinoButtonSize.small,
                           child: Text(
                             "IIIT DHARWAD",
@@ -117,11 +125,12 @@ class _MyappState extends State<Myapp> with SingleTickerProviderStateMixin {
                           ),
                         ),
                       ),
-                  
+
                       Builder(
                         builder: (context) {
                           return TextButton(
                             onPressed: () {
+                              player.pause();
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
@@ -140,7 +149,6 @@ class _MyappState extends State<Myapp> with SingleTickerProviderStateMixin {
                         ),
                         height: 200,
                         width: 350,
-                  
                         child: PageView(
                           children: [
                             Container(
@@ -148,15 +156,16 @@ class _MyappState extends State<Myapp> with SingleTickerProviderStateMixin {
                                 borderRadius: BorderRadius.circular(30),
                                 image: DecorationImage(
                                   image: AssetImage("assets/iiit1.jpeg"),
+                                  fit: BoxFit.cover,
                                 ),
                               ),
                             ),
-                  
                             Container(
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(30),
                                 image: DecorationImage(
                                   image: AssetImage("assets/iiit2.png"),
+                                  fit: BoxFit.cover,
                                 ),
                               ),
                             ),
@@ -215,7 +224,6 @@ class _MyappState extends State<Myapp> with SingleTickerProviderStateMixin {
                           ),
                         ],
                       ),
-                  
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
